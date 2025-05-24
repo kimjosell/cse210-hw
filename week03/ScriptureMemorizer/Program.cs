@@ -1,5 +1,4 @@
 using System;
-using System.Security.Cryptography;
 
 class Program
 {
@@ -15,27 +14,8 @@ class Program
             Console.Clear();
             Console.WriteLine(scripture.GetDisplayText());
             Console.WriteLine("\nPress enter to hide a word, or type 'quit' to exit.");
-            if (scripture.IsCompletelyHidden())
-                {
-                    Console.WriteLine("Did you memorize the scripture? (y/n)");
-                    string answer = Console.ReadLine();
-                if (answer.ToLower() == "y")
-                {
-                    Console.WriteLine("Congratulations! You have memorized the scripture.");
-                    using (StreamWriter OutputFile = new StreamWriter("memorized.txt", true))
-                    {
-                        OutputFile.WriteLine(reference.GetDisplayText());
-                    }
-                    isRunning = false;
-                }
-                else
-                {
-                    Console.WriteLine("Keep practicing!");
-                    isRunning = false;
-                }
-                }
             string input = Console.ReadLine();
-            if (input.ToLower() == "quit")
+            if (input.ToLower() == "quit" || scripture.IsCompletelyHidden())
             {
                 isRunning = false;
             }
